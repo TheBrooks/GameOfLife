@@ -1,0 +1,457 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		6061CF40189242F9009C16E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6061CF3F189242F9009C16E6 /* Foundation.framework */; };
+		6061CF42189242F9009C16E6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6061CF41189242F9009C16E6 /* CoreGraphics.framework */; };
+		6061CF44189242F9009C16E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6061CF43189242F9009C16E6 /* UIKit.framework */; };
+		6061CF4A189242FA009C16E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6061CF48189242FA009C16E6 /* InfoPlist.strings */; };
+		6061CF4C189242FA009C16E6 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 6061CF4B189242FA009C16E6 /* main.m */; };
+		6061CF50189242FA009C16E6 /* Brooks2AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6061CF4F189242FA009C16E6 /* Brooks2AppDelegate.m */; };
+		6061CF52189242FA009C16E6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6061CF51189242FA009C16E6 /* Images.xcassets */; };
+		6061CF59189242FA009C16E6 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6061CF58189242FA009C16E6 /* XCTest.framework */; };
+		6061CF5A189242FA009C16E6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6061CF3F189242F9009C16E6 /* Foundation.framework */; };
+		6061CF5B189242FA009C16E6 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6061CF43189242F9009C16E6 /* UIKit.framework */; };
+		6061CF63189242FA009C16E6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6061CF61189242FA009C16E6 /* InfoPlist.strings */; };
+		6061CF65189242FA009C16E6 /* RBGameOfLifeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6061CF64189242FA009C16E6 /* RBGameOfLifeTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		6061CF5C189242FA009C16E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6061CF34189242F9009C16E6 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6061CF3B189242F9009C16E6;
+			remoteInfo = RBGameOfLife;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		6061CF3C189242F9009C16E6 /* RBGameOfLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RBGameOfLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		6061CF3F189242F9009C16E6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		6061CF41189242F9009C16E6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		6061CF43189242F9009C16E6 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		6061CF47189242FA009C16E6 /* RBGameOfLife-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RBGameOfLife-Info.plist"; sourceTree = "<group>"; };
+		6061CF49189242FA009C16E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6061CF4B189242FA009C16E6 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		6061CF4D189242FA009C16E6 /* RBGameOfLife-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RBGameOfLife-Prefix.pch"; sourceTree = "<group>"; };
+		6061CF4E189242FA009C16E6 /* Brooks2AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Brooks2AppDelegate.h; sourceTree = "<group>"; };
+		6061CF4F189242FA009C16E6 /* Brooks2AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Brooks2AppDelegate.m; sourceTree = "<group>"; };
+		6061CF51189242FA009C16E6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		6061CF57189242FA009C16E6 /* RBGameOfLifeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RBGameOfLifeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		6061CF58189242FA009C16E6 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		6061CF60189242FA009C16E6 /* RBGameOfLifeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "RBGameOfLifeTests-Info.plist"; sourceTree = "<group>"; };
+		6061CF62189242FA009C16E6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6061CF64189242FA009C16E6 /* RBGameOfLifeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RBGameOfLifeTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		6061CF39189242F9009C16E6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6061CF42189242F9009C16E6 /* CoreGraphics.framework in Frameworks */,
+				6061CF44189242F9009C16E6 /* UIKit.framework in Frameworks */,
+				6061CF40189242F9009C16E6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6061CF54189242FA009C16E6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6061CF59189242FA009C16E6 /* XCTest.framework in Frameworks */,
+				6061CF5B189242FA009C16E6 /* UIKit.framework in Frameworks */,
+				6061CF5A189242FA009C16E6 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6061CF33189242F9009C16E6 = {
+			isa = PBXGroup;
+			children = (
+				6061CF45189242F9009C16E6 /* RBGameOfLife */,
+				6061CF5E189242FA009C16E6 /* RBGameOfLifeTests */,
+				6061CF3E189242F9009C16E6 /* Frameworks */,
+				6061CF3D189242F9009C16E6 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		6061CF3D189242F9009C16E6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				6061CF3C189242F9009C16E6 /* RBGameOfLife.app */,
+				6061CF57189242FA009C16E6 /* RBGameOfLifeTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		6061CF3E189242F9009C16E6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6061CF3F189242F9009C16E6 /* Foundation.framework */,
+				6061CF41189242F9009C16E6 /* CoreGraphics.framework */,
+				6061CF43189242F9009C16E6 /* UIKit.framework */,
+				6061CF58189242FA009C16E6 /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		6061CF45189242F9009C16E6 /* RBGameOfLife */ = {
+			isa = PBXGroup;
+			children = (
+				6061CF4E189242FA009C16E6 /* Brooks2AppDelegate.h */,
+				6061CF4F189242FA009C16E6 /* Brooks2AppDelegate.m */,
+				6061CF51189242FA009C16E6 /* Images.xcassets */,
+				6061CF46189242FA009C16E6 /* Supporting Files */,
+			);
+			path = RBGameOfLife;
+			sourceTree = "<group>";
+		};
+		6061CF46189242FA009C16E6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6061CF47189242FA009C16E6 /* RBGameOfLife-Info.plist */,
+				6061CF48189242FA009C16E6 /* InfoPlist.strings */,
+				6061CF4B189242FA009C16E6 /* main.m */,
+				6061CF4D189242FA009C16E6 /* RBGameOfLife-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6061CF5E189242FA009C16E6 /* RBGameOfLifeTests */ = {
+			isa = PBXGroup;
+			children = (
+				6061CF64189242FA009C16E6 /* RBGameOfLifeTests.m */,
+				6061CF5F189242FA009C16E6 /* Supporting Files */,
+			);
+			path = RBGameOfLifeTests;
+			sourceTree = "<group>";
+		};
+		6061CF5F189242FA009C16E6 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6061CF60189242FA009C16E6 /* RBGameOfLifeTests-Info.plist */,
+				6061CF61189242FA009C16E6 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		6061CF3B189242F9009C16E6 /* RBGameOfLife */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6061CF68189242FA009C16E6 /* Build configuration list for PBXNativeTarget "RBGameOfLife" */;
+			buildPhases = (
+				6061CF38189242F9009C16E6 /* Sources */,
+				6061CF39189242F9009C16E6 /* Frameworks */,
+				6061CF3A189242F9009C16E6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RBGameOfLife;
+			productName = RBGameOfLife;
+			productReference = 6061CF3C189242F9009C16E6 /* RBGameOfLife.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6061CF56189242FA009C16E6 /* RBGameOfLifeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6061CF6B189242FA009C16E6 /* Build configuration list for PBXNativeTarget "RBGameOfLifeTests" */;
+			buildPhases = (
+				6061CF53189242FA009C16E6 /* Sources */,
+				6061CF54189242FA009C16E6 /* Frameworks */,
+				6061CF55189242FA009C16E6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6061CF5D189242FA009C16E6 /* PBXTargetDependency */,
+			);
+			name = RBGameOfLifeTests;
+			productName = RBGameOfLifeTests;
+			productReference = 6061CF57189242FA009C16E6 /* RBGameOfLifeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		6061CF34189242F9009C16E6 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = Brooks2;
+				LastUpgradeCheck = 0500;
+				ORGANIZATIONNAME = "Ryan Brooks";
+				TargetAttributes = {
+					6061CF56189242FA009C16E6 = {
+						TestTargetID = 6061CF3B189242F9009C16E6;
+					};
+				};
+			};
+			buildConfigurationList = 6061CF37189242F9009C16E6 /* Build configuration list for PBXProject "RBGameOfLife" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 6061CF33189242F9009C16E6;
+			productRefGroup = 6061CF3D189242F9009C16E6 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				6061CF3B189242F9009C16E6 /* RBGameOfLife */,
+				6061CF56189242FA009C16E6 /* RBGameOfLifeTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		6061CF3A189242F9009C16E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6061CF4A189242FA009C16E6 /* InfoPlist.strings in Resources */,
+				6061CF52189242FA009C16E6 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6061CF55189242FA009C16E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6061CF63189242FA009C16E6 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		6061CF38189242F9009C16E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6061CF4C189242FA009C16E6 /* main.m in Sources */,
+				6061CF50189242FA009C16E6 /* Brooks2AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6061CF53189242FA009C16E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6061CF65189242FA009C16E6 /* RBGameOfLifeTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6061CF5D189242FA009C16E6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6061CF3B189242F9009C16E6 /* RBGameOfLife */;
+			targetProxy = 6061CF5C189242FA009C16E6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		6061CF48189242FA009C16E6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6061CF49189242FA009C16E6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		6061CF61189242FA009C16E6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6061CF62189242FA009C16E6 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		6061CF66189242FA009C16E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		6061CF67189242FA009C16E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		6061CF69189242FA009C16E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RBGameOfLife/RBGameOfLife-Prefix.pch";
+				INFOPLIST_FILE = "RBGameOfLife/RBGameOfLife-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		6061CF6A189242FA009C16E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RBGameOfLife/RBGameOfLife-Prefix.pch";
+				INFOPLIST_FILE = "RBGameOfLife/RBGameOfLife-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		6061CF6C189242FA009C16E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RBGameOfLife.app/RBGameOfLife";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RBGameOfLife/RBGameOfLife-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "RBGameOfLifeTests/RBGameOfLifeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		6061CF6D189242FA009C16E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_INCLUDING_64_BIT)";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/RBGameOfLife.app/RBGameOfLife";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "RBGameOfLife/RBGameOfLife-Prefix.pch";
+				INFOPLIST_FILE = "RBGameOfLifeTests/RBGameOfLifeTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		6061CF37189242F9009C16E6 /* Build configuration list for PBXProject "RBGameOfLife" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6061CF66189242FA009C16E6 /* Debug */,
+				6061CF67189242FA009C16E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6061CF68189242FA009C16E6 /* Build configuration list for PBXNativeTarget "RBGameOfLife" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6061CF69189242FA009C16E6 /* Debug */,
+				6061CF6A189242FA009C16E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		6061CF6B189242FA009C16E6 /* Build configuration list for PBXNativeTarget "RBGameOfLifeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6061CF6C189242FA009C16E6 /* Debug */,
+				6061CF6D189242FA009C16E6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 6061CF34189242F9009C16E6 /* Project object */;
+}
