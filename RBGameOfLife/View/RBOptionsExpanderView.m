@@ -63,13 +63,13 @@
         _exposedViewButtonArea = [UIView new];
         
         _leftOptionViewButtonArea  = [UIView new];
-        _leftOptionViewButton.tag = OptionExpanderViewLeft;
+        _leftOptionViewButtonArea.tag = OptionExpanderViewLeft;
         
         _centerOptionViewButtonArea = [UIView new];
-        _centerOptionViewButton.tag = OptionExpanderViewCenter;
+        _centerOptionViewButtonArea.tag = OptionExpanderViewCenter;
         
         _rightOptionViewButtonArea = [UIView new];
-        _rightOptionViewButton.tag = OptionExpanderViewRight;
+        _rightOptionViewButtonArea.tag = OptionExpanderViewRight;
         
         [_exposedViewButtonArea setFrame:CGRectMake(10, 10, 43, 43)];
         [_leftOptionViewButtonArea setFrame:CGRectMake(73, 10, 72, 43)];
@@ -92,6 +92,7 @@
 
 - (void) viewTapped:(UITapGestureRecognizer *)gestureRecodniser
 {
+    NSLog(@"%li",(long)gestureRecodniser.view.tag);
     [_delegate optionExpanderView:self didRecieveViewTouchAtPosition:(OptoionExpanderViewPosition)gestureRecodniser.view.tag];
 }
 
@@ -162,28 +163,28 @@
 -(void) setCenterOptionViewButton:(UIView *)centerOptionView {
     if(_centerOptionViewButton)
     {
-        [_centerOptionViewButton removeGestureRecognizer:_tapperCenter];
+        [_centerOptionViewButtonArea removeGestureRecognizer:_tapperCenter];
         [_centerOptionViewButton removeFromSuperview];
     }
     
     _centerOptionViewButton = centerOptionView;
     if(_centerOptionViewButton){
         [_centerOptionViewButtonArea addSubview:_centerOptionViewButton];
-        [_centerOptionViewButton addGestureRecognizer:_tapperCenter];
+        [_centerOptionViewButtonArea addGestureRecognizer:_tapperCenter];
     }
 }
 
 -(void) setRightOptionViewButton:(UIView *)rightOptionView {
     if(_rightOptionViewButton)
     {
-        [_rightOptionViewButton removeGestureRecognizer:_tapperRight];
+        [_rightOptionViewButtonArea removeGestureRecognizer:_tapperRight];
         [_rightOptionViewButton removeFromSuperview];
     }
     _rightOptionViewButton = rightOptionView;
     
     if(_rightOptionViewButton){
         [_rightOptionViewButtonArea addSubview:_rightOptionViewButton];
-        [_rightOptionViewButton addGestureRecognizer:_tapperRight];
+        [_rightOptionViewButtonArea addGestureRecognizer:_tapperRight];
     }
 }
 
@@ -195,7 +196,7 @@
 
 - (void)setExpanded:(BOOL)expand
 {
-    if(!_expanded && expand)
+    if(!_expanded && expand )
     {
         //maybe remove and re add gesture recognisers
         

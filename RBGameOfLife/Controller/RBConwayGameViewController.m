@@ -107,15 +107,19 @@
     [_centerButton setFrame:CGRectMake(0, 0, 72, 44)];
     [centerButtonLabel setFrame:[_centerButton bounds]];
     
-//    _rightButton = [[UIView alloc] init];
-//    [_rightButton setBackgroundColor:[UIColor brownColor]];
-//    [_rightButton setFrame:CGRectMake(0, 0, 72, 44)];
+    _rightButton = [[UIView alloc] init];
+    UILabel *rightButtonLabel = [UILabel new];
+    [rightButtonLabel setText:@"restart"];
+    [_rightButton addSubview:rightButtonLabel];
+    [_rightButton setFrame:CGRectMake(0, 0, 72, 44)];
+    [rightButtonLabel setFrame:[_rightButton bounds]];
     
     [_optionsExtender setExpandViewIcon: _expandView];
     [_optionsExtender setRetractViewIcon: _shrinkView];
     [_optionsExtender setLeftOptionViewButton:_leftButton];
+    [_optionsExtender setCenterOptionViewButton: _centerButton];
     [_optionsExtender setRightOptionViewButton:_rightButton];
-//    [_optionsExtender setCenterOptionViewButton: _centerButton];
+
     
     
     [_contentView setBackgroundColor:[UIColor lightGrayColor]];
@@ -214,7 +218,8 @@
    }
    else if(touchPosition == OptionExpanderViewRight)
    {
-        
+       [_nodeData restartGame];
+       [self updateNodeViews];
    }
 }
 
