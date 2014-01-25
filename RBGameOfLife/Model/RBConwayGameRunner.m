@@ -8,12 +8,18 @@
 
 #import "RBConwayGameRunner.h"
 #import "RBConwayNode.h"
+#import "RBConwayWall.h"
+#import "RBConwayCell.h"
+
+NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
 
 @implementation RBConwayGameRunner{
 
     NSMutableArray *_conwayNodes;
     NSUInteger _rows;
     NSUInteger _columns;
+    
+    dispatch_queue_t _changingConwayNodesQueue;
 }
 
 
@@ -26,12 +32,14 @@
         _rows = rows;
         _columns = columns;
         
+        _changingConwayNodesQueue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);
+        
         for(int row = 0; row < _rows; row ++)
         {
             NSMutableArray *nodeRow = [NSMutableArray new];
             for(int col = 0; col < _columns; col ++)
             {
-                RBConwayNode *positionNode = [[RBConwayNode alloc ]init];
+                RBConwayNode *positionNode = [[RBConwayCell alloc ]init];
                 [positionNode setRow:row];
                 [positionNode setColumn:col];
                 
@@ -46,75 +54,100 @@
 
 - (void) simulateConwayYear
 {
-    NSMutableArray *changedNodes = [NSMutableArray new];
-    NSUInteger aliveNeightbors = 0;
-    for(NSArray *row in _conwayNodes)
-    {
-        for(RBConwayNode *node in row)
+    dispatch_sync(_changingConwayNodesQueue, ^{
+        NSMutableArray *changedNodes = [NSMutableArray new];
+        NSUInteger aliveNeightbors = 0;
+        for(NSArray *row in _conwayNodes)
         {
-            aliveNeightbors = 0;
-            NSUInteger nodeRow = node.row;
-            NSUInteger nodeCol = node.column;
-            
-            
-            /* calculate the number of neightbors */
-            if(nodeRow != 0 && nodeCol != 0)
-                aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow-1][nodeCol-1]).isAlive;
-            if(nodeRow != 0)
-                aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow-1][nodeCol]).isAlive;
-            if(nodeRow != 0 && nodeCol != (_columns-1))
-                aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow-1][nodeCol+1]).isAlive;
-            
-            if(nodeCol != 0)
-                aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow][nodeCol-1]).isAlive;
-            if(nodeCol != (_columns-1))
-                aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow][nodeCol+1]).isAlive;
-            
-            if(nodeRow != (_rows-1) && nodeCol != 0)
-                aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow+1][nodeCol-1]).isAlive;
-            if(nodeRow != (_rows-1))
-                aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow+1][nodeCol]).isAlive;
-            if(nodeRow != (_rows-1) && nodeCol != (_columns-1))
-                aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow+1][nodeCol+1]).isAlive;
-            
-            /* checking if need update */
-            if(node.isAlive != [node willBeAliveWithNumberOfAliveNeightbors:aliveNeightbors])
-               [changedNodes addObject:node];
-
+            for(RBConwayNode *node in row)
+            {
+                aliveNeightbors = 0;
+                NSUInteger nodeRow = node.row;
+                NSUInteger nodeCol = node.column;
+                
+                /* calculate the number of neightbors */
+                if(nodeRow != 0 && nodeCol != 0)
+                    aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow-1][nodeCol-1]).isAlive;
+                if(nodeRow != 0)
+                    aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow-1][nodeCol]).isAlive;
+                if(nodeRow != 0 && nodeCol != (_columns-1))
+                    aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow-1][nodeCol+1]).isAlive;
+                
+                if(nodeCol != 0)
+                    aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow][nodeCol-1]).isAlive;
+                if(nodeCol != (_columns-1))
+                    aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow][nodeCol+1]).isAlive;
+                
+                if(nodeRow != (_rows-1) && nodeCol != 0)
+                    aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow+1][nodeCol-1]).isAlive;
+                if(nodeRow != (_rows-1))
+                    aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow+1][nodeCol]).isAlive;
+                if(nodeRow != (_rows-1) && nodeCol != (_columns-1))
+                    aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow+1][nodeCol+1]).isAlive;
+                
+                /* checking if need update */
+                if(node.isAlive != [node willBeAliveWithNumberOfAliveNeightbors:aliveNeightbors])
+                    [changedNodes addObject:node];
+                
+            }
         }
-    }
-    
-    if(!changedNodes)
-    {
-        //send out notification that game is kill
-    }
-    for(RBConwayNode *updatedNode in changedNodes)
-    {
-        updatedNode.isAlive = !updatedNode.isAlive;
-    }
+        
+        if(![changedNodes count])
+        {
+            //send out notification that game is kill
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:kRBConwayGameRunnerReachedStasis object:self];
+        }
+        for(RBConwayNode *updatedNode in changedNodes)
+        {
+            [updatedNode setIsAlive:!updatedNode.isAlive ];
+        }
+    });
 }
 
 - (void) toggleNodeAtRow:(NSUInteger)row Column:(NSUInteger)column
 {
     //check while not simulating use a semaphore
-    if(true)
-    {
+    dispatch_sync(_changingConwayNodesQueue, ^{
         ((RBConwayNode *)_conwayNodes[row][column]).isAlive = !((RBConwayNode *)_conwayNodes[row][column]).isAlive;
-    }
+    });
+}
+
+- (void) toggleActiveOnNodeAtRow:(NSUInteger)row Column:(NSUInteger)column
+{
+    dispatch_sync(_changingConwayNodesQueue, ^{
+        RBConwayNode *positionNode = _conwayNodes[row][column];
+        if([positionNode isKindOfClass:[RBConwayWall class]]) //if its a wall
+        {
+            positionNode = [[RBConwayCell alloc] init];
+            positionNode.isAlive = NO;
+            positionNode.row = row;
+            positionNode.column = column;
+            
+            [_conwayNodes[row] replaceObjectAtIndex:column withObject:positionNode];
+        }
+        else if([positionNode isKindOfClass:[RBConwayCell class]])
+        {
+            positionNode = [[RBConwayWall alloc] init];
+            positionNode.row = row;
+            positionNode.column = column;
+            
+            [_conwayNodes[row] replaceObjectAtIndex:column withObject:positionNode];
+        }
+    });
 }
 
 
 - (void) restartGame
 {
-    
-    for(int row = 0; row < _rows; row ++)
-    {
-        for(int col = 0; col < _columns; col ++)
+    dispatch_sync(_changingConwayNodesQueue, ^{
+        for(int row = 0; row < _rows; row ++)
         {
-            [_conwayNodes[row][col] setIsAlive:NO];
+            for(int col = 0; col < _columns; col ++)
+            {
+                [_conwayNodes[row][col] setIsAlive:NO];
+            }
         }
-    }
-    
-
+    });
 }
 @end

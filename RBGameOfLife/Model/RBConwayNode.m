@@ -16,19 +16,10 @@
     if(self)
     {
         _isAlive = NO;
-        _row = -1;
-        _column = -1;
+        _row = 0;
+        _column = 0;
     }
     return self;
-}
-
-- (BOOL)willBeAliveWithNumberOfAliveNeightbors:(NSUInteger)neightbors
-{
-    if(neightbors == 3 || (_isAlive && neightbors == 2))
-    {
-        return YES;
-    }
-    return NO;
 }
 
 

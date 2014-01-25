@@ -27,6 +27,8 @@
 		60FEE3CB18931FB8007CBC7F /* optionsExpand.png in Resources */ = {isa = PBXBuildFile; fileRef = 60FEE3C918931FB8007CBC7F /* optionsExpand.png */; };
 		60FEE3CC18931FB8007CBC7F /* optionsShrink.png in Resources */ = {isa = PBXBuildFile; fileRef = 60FEE3CA18931FB8007CBC7F /* optionsShrink.png */; };
 		60FEE3CF18931FDE007CBC7F /* RBOptionsExpanderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FEE3CE18931FDE007CBC7F /* RBOptionsExpanderView.m */; };
+		60FEE3D218941F12007CBC7F /* RBConwayWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FEE3D118941F12007CBC7F /* RBConwayWall.m */; };
+		60FEE3D518942077007CBC7F /* RBConwayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FEE3D418942077007CBC7F /* RBConwayCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,10 @@
 		60FEE3CA18931FB8007CBC7F /* optionsShrink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = optionsShrink.png; sourceTree = "<group>"; };
 		60FEE3CD18931FDE007CBC7F /* RBOptionsExpanderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBOptionsExpanderView.h; path = View/RBOptionsExpanderView.h; sourceTree = "<group>"; };
 		60FEE3CE18931FDE007CBC7F /* RBOptionsExpanderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RBOptionsExpanderView.m; path = View/RBOptionsExpanderView.m; sourceTree = "<group>"; };
+		60FEE3D018941F12007CBC7F /* RBConwayWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBConwayWall.h; path = Model/RBConwayWall.h; sourceTree = "<group>"; };
+		60FEE3D118941F12007CBC7F /* RBConwayWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RBConwayWall.m; path = Model/RBConwayWall.m; sourceTree = "<group>"; };
+		60FEE3D318942077007CBC7F /* RBConwayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBConwayCell.h; path = Model/RBConwayCell.h; sourceTree = "<group>"; };
+		60FEE3D418942077007CBC7F /* RBConwayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RBConwayCell.m; path = Model/RBConwayCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +184,10 @@
 				60FEE3B91892F30A007CBC7F /* RBConwayGameRunner.m */,
 				6061CF711892447F009C16E6 /* RBConwayNode.h */,
 				6061CF721892447F009C16E6 /* RBConwayNode.m */,
+				60FEE3D318942077007CBC7F /* RBConwayCell.h */,
+				60FEE3D418942077007CBC7F /* RBConwayCell.m */,
+				60FEE3D018941F12007CBC7F /* RBConwayWall.h */,
+				60FEE3D118941F12007CBC7F /* RBConwayWall.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -302,11 +312,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				60FEE3C01892FF80007CBC7F /* RBChangingColorView.m in Sources */,
+				60FEE3D518942077007CBC7F /* RBConwayCell.m in Sources */,
 				6061CF731892447F009C16E6 /* RBConwayNode.m in Sources */,
 				60FEE3BA1892F30A007CBC7F /* RBConwayGameRunner.m in Sources */,
 				6061CF70189243D1009C16E6 /* RBConwayGameViewController.m in Sources */,
 				60FEE3CF18931FDE007CBC7F /* RBOptionsExpanderView.m in Sources */,
 				6061CF4C189242FA009C16E6 /* main.m in Sources */,
+				60FEE3D218941F12007CBC7F /* RBConwayWall.m in Sources */,
 				6061CF50189242FA009C16E6 /* Brooks2AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

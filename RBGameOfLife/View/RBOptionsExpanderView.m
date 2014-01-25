@@ -92,7 +92,6 @@
 
 - (void) viewTapped:(UITapGestureRecognizer *)gestureRecodniser
 {
-    NSLog(@"%li",(long)gestureRecodniser.view.tag);
     [_delegate optionExpanderView:self didRecieveViewTouchAtPosition:(OptoionExpanderViewPosition)gestureRecodniser.view.tag];
 }
 
