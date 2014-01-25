@@ -148,7 +148,7 @@
         for(int col = 0; col < NODES_PER_ROW; col ++)
         {
             if((row == 0 || row == 1) && (col == NODES_PER_ROW-1 || col == NODES_PER_ROW-2))
-               [_nodeData toggleActiveOnNodeAtRow:row Column:col];
+               [_nodeData toggleNodeAlwaysOffAtRow:row Column:col];
             
             RBChangingColorView *positionView = [[RBChangingColorView alloc] initWithFrame:
                                                  CGRectMake(1+col * (NODE_WIDTH + WHITESPACE),
@@ -157,16 +157,16 @@
                                                 NODE_HEIGHT)];
             positionView.tag = row;
             
-            /*
+            
             UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc ] initWithTarget:self action:@selector(nodeLongPushed:)];
             longPress.delegate = self;
-            */
+            
             
             UITapGestureRecognizer *tapper = [[UITapGestureRecognizer alloc ] initWithTarget:self action:@selector(nodePushed:)];
             tapper.delegate = self;
             
-            //[tapper requireGestureRecognizerToFail:longPress];
-            //[positionView addGestureRecognizer:longPress];
+            [tapper requireGestureRecognizerToFail:longPress];
+            [positionView addGestureRecognizer:longPress];
             [positionView addGestureRecognizer:tapper];
             
             [_contentView addSubview:positionView];
@@ -200,7 +200,7 @@
         NSUInteger column = [_conwayNodeViews[row] indexOfObject:tappedView];
 
         
-        [_nodeData toggleActiveOnNodeAtRow:row Column:column];
+        [_nodeData toggleNodeAlwaysOnAtRow:row Column:column];
         [(RBChangingColorView *)_conwayNodeViews[row][column] setActive:((RBConwayNode *)_nodeData.conwayNodes[row][column]).isAlive];
     }
 }

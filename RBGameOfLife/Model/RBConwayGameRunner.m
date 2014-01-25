@@ -10,6 +10,7 @@
 #import "RBConwayNode.h"
 #import "RBConwayWall.h"
 #import "RBConwayCell.h"
+#import "RBConwayFountainOfLife.h"
 
 NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
 
@@ -113,11 +114,21 @@ NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
     });
 }
 
-- (void) toggleActiveOnNodeAtRow:(NSUInteger)row Column:(NSUInteger)column
+
+- (void) toggleNodeAlwaysOnAtRow:(NSUInteger)row Column:(NSUInteger)column
 {
     dispatch_sync(_changingConwayNodesQueue, ^{
         RBConwayNode *positionNode = _conwayNodes[row][column];
-        if([positionNode isKindOfClass:[RBConwayWall class]]) //if its a wall
+        if(![positionNode isKindOfClass:[RBConwayFountainOfLife class]]) //if its a wall
+        {
+            positionNode = [[RBConwayFountainOfLife alloc] init];
+            positionNode.isAlive = NO;
+            positionNode.row = row;
+            positionNode.column = column;
+            
+            [_conwayNodes[row] replaceObjectAtIndex:column withObject:positionNode];
+        }
+        else
         {
             positionNode = [[RBConwayCell alloc] init];
             positionNode.isAlive = NO;
@@ -126,9 +137,44 @@ NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
             
             [_conwayNodes[row] replaceObjectAtIndex:column withObject:positionNode];
         }
-        else if([positionNode isKindOfClass:[RBConwayCell class]])
+    });
+}
+
+-(void) toggleNodeAlwaysOffAtRow:(NSUInteger)row Column:(NSUInteger)column
+{
+    dispatch_sync(_changingConwayNodesQueue, ^{
+        RBConwayNode *positionNode = _conwayNodes[row][column];
+        if(![positionNode isKindOfClass:[RBConwayWall class]]) //if its a wall
         {
             positionNode = [[RBConwayWall alloc] init];
+            positionNode.isAlive = NO;
+            positionNode.row = row;
+            positionNode.column = column;
+            
+            [_conwayNodes[row] replaceObjectAtIndex:column withObject:positionNode];
+        }
+        else
+        {
+            positionNode = [[RBConwayCell alloc] init];
+            positionNode.isAlive = NO;
+            positionNode.row = row;
+            positionNode.column = column;
+            
+            [_conwayNodes[row] replaceObjectAtIndex:column withObject:positionNode];
+        }
+    });
+
+}
+
+- (void) setNodeActivityToNormalAtRow:(NSUInteger)row Column:(NSUInteger)column
+{
+    dispatch_sync(_changingConwayNodesQueue, ^{
+        RBConwayNode *positionNode = _conwayNodes[row][column];
+        if(![positionNode isKindOfClass:[RBConwayCell class]]) //if its a wall
+        {
+            BOOL pastAlive = positionNode.isAlive;
+            positionNode = [[RBConwayCell alloc] init];
+            positionNode.isAlive = pastAlive;
             positionNode.row = row;
             positionNode.column = column;
             
@@ -138,6 +184,8 @@ NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
 }
 
 
+
+
 - (void) restartGame
 {
     dispatch_sync(_changingConwayNodesQueue, ^{
@@ -145,6 +193,7 @@ NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
         {
             for(int col = 0; col < _columns; col ++)
             {
+                //need to make them all cells again
                 [_conwayNodes[row][col] setIsAlive:NO];
             }
         }

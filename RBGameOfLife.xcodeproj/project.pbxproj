@@ -29,6 +29,7 @@
 		60FEE3CF18931FDE007CBC7F /* RBOptionsExpanderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FEE3CE18931FDE007CBC7F /* RBOptionsExpanderView.m */; };
 		60FEE3D218941F12007CBC7F /* RBConwayWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FEE3D118941F12007CBC7F /* RBConwayWall.m */; };
 		60FEE3D518942077007CBC7F /* RBConwayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FEE3D418942077007CBC7F /* RBConwayCell.m */; };
+		60FEE3D818942BC1007CBC7F /* RBConwayFountainOfLife.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FEE3D718942BC1007CBC7F /* RBConwayFountainOfLife.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,8 @@
 		60FEE3D118941F12007CBC7F /* RBConwayWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RBConwayWall.m; path = Model/RBConwayWall.m; sourceTree = "<group>"; };
 		60FEE3D318942077007CBC7F /* RBConwayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBConwayCell.h; path = Model/RBConwayCell.h; sourceTree = "<group>"; };
 		60FEE3D418942077007CBC7F /* RBConwayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RBConwayCell.m; path = Model/RBConwayCell.m; sourceTree = "<group>"; };
+		60FEE3D618942BC1007CBC7F /* RBConwayFountainOfLife.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBConwayFountainOfLife.h; path = Model/RBConwayFountainOfLife.h; sourceTree = "<group>"; };
+		60FEE3D718942BC1007CBC7F /* RBConwayFountainOfLife.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RBConwayFountainOfLife.m; path = Model/RBConwayFountainOfLife.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -188,6 +191,8 @@
 				60FEE3D418942077007CBC7F /* RBConwayCell.m */,
 				60FEE3D018941F12007CBC7F /* RBConwayWall.h */,
 				60FEE3D118941F12007CBC7F /* RBConwayWall.m */,
+				60FEE3D618942BC1007CBC7F /* RBConwayFountainOfLife.h */,
+				60FEE3D718942BC1007CBC7F /* RBConwayFountainOfLife.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 				6061CF4C189242FA009C16E6 /* main.m in Sources */,
 				60FEE3D218941F12007CBC7F /* RBConwayWall.m in Sources */,
 				6061CF50189242FA009C16E6 /* Brooks2AppDelegate.m in Sources */,
+				60FEE3D818942BC1007CBC7F /* RBConwayFountainOfLife.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

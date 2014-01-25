@@ -16,7 +16,12 @@ extern NSString * const kRBConwayGameRunnerReachedStasis;
 
 - (void) simulateConwayYear;
 - (void) toggleNodeAtRow:(NSUInteger)row Column:(NSUInteger)column;
-- (void) toggleActiveOnNodeAtRow:(NSUInteger)row Column:(NSUInteger)column;
+
+
+
+- (void) toggleNodeAlwaysOnAtRow:(NSUInteger)row Column:(NSUInteger)column;
+- (void) toggleNodeAlwaysOffAtRow:(NSUInteger)row Column:(NSUInteger)column;
+
 - (void) restartGame;
 
 @property (readonly) NSMutableArray *conwayNodes;
