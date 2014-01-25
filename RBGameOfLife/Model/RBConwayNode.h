@@ -14,4 +14,6 @@
 @property NSUInteger row;
 @property NSUInteger column;
 
+- (BOOL)willBeAliveWithNumberOfAliveNeightbors:(NSUInteger)neightbors;
+
 @end

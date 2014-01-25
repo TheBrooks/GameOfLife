@@ -22,4 +22,14 @@
     return self;
 }
 
+- (BOOL)willBeAliveWithNumberOfAliveNeightbors:(NSUInteger)neightbors
+{
+    if(neightbors == 3 || (_isAlive && neightbors == 2))
+    {
+        return YES;
+    }
+    return NO;
+}
+
+
 @end
