@@ -11,11 +11,11 @@
 #import "RBConwayGameRunner.h"
 #import "RBChangingColorView.h"
 
-#define NODE_WIDTH 30
-#define NODE_HEIGHT 31
+#define NODE_WIDTH 32
+#define NODE_HEIGHT 33
 #define NODES_PER_ROW 10
 #define NODES_PER_COLUMN 18
-#define WHITESPACE 2
+#define WHITESPACE 0
 
 @interface RBConwayGameViewController ()
 
@@ -67,10 +67,8 @@
     _contentView = [UIView new];
     [view addSubview:_contentView];
     
-    
-    
     /* Header area of the view Controller */
-    _optionsExtender = [[RBOptionsExpanderView alloc]initWithFrame: CGRectMake(320-63, 0, 320, 65)];
+    _optionsExtender = [[RBOptionsExpanderView alloc]initWithFrame: CGRectMake(320  - (NODE_WIDTH + WHITESPACE)*2, 0, 320, 2*NODE_HEIGHT)];
     [view addSubview:_optionsExtender];
     _optionsExtender.delegate = self;
     
@@ -87,6 +85,8 @@
     _conwayNodeViews = [NSMutableArray new];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopLife) name:kRBConwayGameRunnerReachedStasis object:_nodeData];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewWillDisappear:) name:UIApplicationWillResignActiveNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(viewWillAppear:) name:UIApplicationDidBecomeActiveNotification object:nil];
     
     _expandView = [[UIImageView alloc] initWithImage:[[UIImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/optionsExpand.png",[[NSBundle mainBundle] bundlePath] ]]];
     [_expandView setBackgroundColor:[UIColor whiteColor]];
@@ -151,8 +151,8 @@
                [_nodeData toggleNodeAlwaysOffAtRow:row Column:col];
             
             RBChangingColorView *positionView = [[RBChangingColorView alloc] initWithFrame:
-                                                 CGRectMake(1+col * (NODE_WIDTH + WHITESPACE),
-                                                1+row * (NODE_HEIGHT + WHITESPACE),
+                                                 CGRectMake(col * (NODE_WIDTH + WHITESPACE),
+                                                row * (NODE_HEIGHT + WHITESPACE),
                                                 NODE_WIDTH,
                                                 NODE_HEIGHT)];
             positionView.tag = row;
@@ -171,11 +171,9 @@
             
             [_contentView addSubview:positionView];
             [buttonRow addObject:positionView];
-            
-            if(arc4random() %2)
-                [self toggleNode:positionView];
         }
     }
+    [self randomizeBoard];
     
 }
 
@@ -183,6 +181,18 @@
     [super viewWillAppear:animated];
 }
 
+-(void) viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self stopLife];
+    
+    NSLog(@"live: %lu", (unsigned long)_nodeData.liveNodes );
+    if(!_nodeData.liveNodes)
+    {
+        NSLog(@"wawawawa");
+        [self randomizeBoard];
+    }
+    NSLog(@"leaving");
+}
 - (void) nodePushed:(UIGestureRecognizer*)gestureRecognizer
 {
     //set timer to slow down.  after a certain duration of slowing down speed up timer
@@ -244,6 +254,7 @@
         _runTimer = nil;
     }
     [_optionsExtender setCenterOptionViewButton:_runButton];
+    
 }
 
 - (void) optionExpanderView:(RBOptionsExpanderView *)expanderView didRecieveViewTouchAtPosition:(OptoionExpanderViewPosition)touchPosition
@@ -271,7 +282,7 @@
    }
 }
 
-- (void) optionExpanderViewdidRecieveExpanderTouch:(RBOptionsExpanderView *)expanderView
+- (void) optionExpanderViewDidRecieveExpanderTouch:(RBOptionsExpanderView *)expanderView
 {
     if(expanderView.expanded)
     {
@@ -288,6 +299,19 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void) randomizeBoard
+{
+    for(int row = 0; row < [_nodeData.conwayNodes count]; row++)
+    {
+        for(int col = 0; col < [_nodeData.conwayNodes[row] count]; col++)
+        {
+            if(arc4random()%2)
+                [self toggleNode:(RBChangingColorView *)_conwayNodeViews[row][col]];
+        }
+    }
+    
 }
 
 - (void) dealloc

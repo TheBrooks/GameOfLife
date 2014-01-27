@@ -22,7 +22,7 @@ typedef enum OptoionExpanderViewPosition{
 
 - (void) optionExpanderView:(RBOptionsExpanderView *)expanderView didRecieveViewTouchAtPosition:(OptoionExpanderViewPosition)touchPosition;
 
-- (void) optionExpanderViewdidRecieveExpanderTouch:(RBOptionsExpanderView *)expanderView;
+- (void) optionExpanderViewDidRecieveExpanderTouch:(RBOptionsExpanderView *)expanderView;
 
 @end
 

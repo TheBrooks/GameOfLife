@@ -221,7 +221,7 @@
 
 - (void) expandRetractTapped:(UIGestureRecognizer * )recognizer
 {
-    [_delegate optionExpanderViewdidRecieveExpanderTouch:self];
+    [_delegate optionExpanderViewDidRecieveExpanderTouch:self];
 }
 /*
 // Only override drawRect: if you perform custom drawing.

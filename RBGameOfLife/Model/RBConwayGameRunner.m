@@ -19,6 +19,7 @@ NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
     NSMutableArray *_conwayNodes;
     NSUInteger _rows;
     NSUInteger _columns;
+    NSUInteger _liveNodes;
     
     dispatch_queue_t _changingConwayNodesQueue;
 }
@@ -32,6 +33,7 @@ NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
         _conwayNodes = [NSMutableArray new];
         _rows = rows;
         _columns = columns;
+        _liveNodes = 0;
         
         _changingConwayNodesQueue = dispatch_queue_create(NULL, DISPATCH_QUEUE_SERIAL);
         
@@ -87,9 +89,16 @@ NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
                     aliveNeightbors += ((RBConwayNode *)_conwayNodes[nodeRow+1][nodeCol+1]).isAlive;
                 
                 /* checking if need update */
-                if(node.isAlive != [node willBeAliveWithNumberOfAliveNeightbors:aliveNeightbors])
+                BOOL posNextLife = [node willBeAliveWithNumberOfAliveNeightbors:aliveNeightbors];
+                if(node.isAlive != posNextLife)
+                {
+                    if(posNextLife)
+                        _liveNodes++;
+                    else
+                        _liveNodes--;
+                    
                     [changedNodes addObject:node];
-                
+                }
             }
         }
         
@@ -101,7 +110,7 @@ NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
         }
         for(RBConwayNode *updatedNode in changedNodes)
         {
-            [updatedNode setIsAlive:!updatedNode.isAlive ];
+            [updatedNode setIsAlive:!updatedNode.isAlive];
         }
     });
 }
@@ -110,7 +119,13 @@ NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
 {
     //check while not simulating use a semaphore
     dispatch_sync(_changingConwayNodesQueue, ^{
-        ((RBConwayNode *)_conwayNodes[row][column]).isAlive = !((RBConwayNode *)_conwayNodes[row][column]).isAlive;
+        BOOL wasAlive = ((RBConwayNode *)_conwayNodes[row][column]).isAlive;
+        ((RBConwayNode *)_conwayNodes[row][column]).isAlive = !wasAlive;
+        BOOL curAlive = ((RBConwayNode *)_conwayNodes[row][column]).isAlive;
+        if(!wasAlive && curAlive)
+        { _liveNodes++;}
+        else if(wasAlive && !curAlive)
+        { _liveNodes--;}
     });
 }
 
@@ -119,14 +134,22 @@ NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
 {
     dispatch_sync(_changingConwayNodesQueue, ^{
         RBConwayNode *positionNode = _conwayNodes[row][column];
+        BOOL posNodeLive = positionNode.isAlive;
+        
         if(![positionNode isKindOfClass:[RBConwayFountainOfLife class]]) //if its a wall
         {
             positionNode = [[RBConwayFountainOfLife alloc] init];
-            positionNode.isAlive = NO;
+            positionNode.isAlive = YES;
             positionNode.row = row;
             positionNode.column = column;
             
             [_conwayNodes[row] replaceObjectAtIndex:column withObject:positionNode];
+            
+            if(!posNodeLive)
+            {
+                _liveNodes++;
+            }
+            
         }
         else
         {
@@ -136,6 +159,8 @@ NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
             positionNode.column = column;
             
             [_conwayNodes[row] replaceObjectAtIndex:column withObject:positionNode];
+            
+            _liveNodes--;
         }
     });
 }
@@ -144,6 +169,8 @@ NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
 {
     dispatch_sync(_changingConwayNodesQueue, ^{
         RBConwayNode *positionNode = _conwayNodes[row][column];
+        BOOL posNodeLive = positionNode.isAlive;
+        
         if(![positionNode isKindOfClass:[RBConwayWall class]]) //if its a wall
         {
             positionNode = [[RBConwayWall alloc] init];
@@ -152,6 +179,12 @@ NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
             positionNode.column = column;
             
             [_conwayNodes[row] replaceObjectAtIndex:column withObject:positionNode];
+            
+            if(posNodeLive)
+            {
+                _liveNodes--;
+            }
+            
         }
         else
         {
@@ -161,6 +194,8 @@ NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
             positionNode.column = column;
             
             [_conwayNodes[row] replaceObjectAtIndex:column withObject:positionNode];
+            
+            _liveNodes++;
         }
     });
 
@@ -194,9 +229,16 @@ NSString * const kRBConwayGameRunnerReachedStasis = @"run out of move";
             for(int col = 0; col < _columns; col ++)
             {
                 //need to make them all cells again
+                BOOL preAlive = ((RBConwayNode*)_conwayNodes[row][col]).isAlive;
                 [_conwayNodes[row][col] setIsAlive:NO];
+                
+                if(preAlive && !((RBConwayNode*)_conwayNodes[row][col]).isAlive)
+                    _liveNodes--;
             }
         }
     });
 }
+
+
+
 @end

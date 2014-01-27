@@ -25,5 +25,7 @@ extern NSString * const kRBConwayGameRunnerReachedStasis;
 - (void) restartGame;
 
 @property (readonly) NSMutableArray *conwayNodes;
+@property (readonly)   NSUInteger liveNodes;
+
 
 @end

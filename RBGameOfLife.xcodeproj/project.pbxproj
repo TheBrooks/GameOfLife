@@ -21,9 +21,9 @@
 		6061CF65189242FA009C16E6 /* RBGameOfLifeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6061CF64189242FA009C16E6 /* RBGameOfLifeTests.m */; };
 		6061CF70189243D1009C16E6 /* RBConwayGameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6061CF6F189243D1009C16E6 /* RBConwayGameViewController.m */; };
 		6061CF731892447F009C16E6 /* RBConwayNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6061CF721892447F009C16E6 /* RBConwayNode.m */; };
+		60C90EDC1894452400E04E42 /* GameOfLife2.png in Resources */ = {isa = PBXBuildFile; fileRef = 60C90EDB1894452400E04E42 /* GameOfLife2.png */; };
 		60FEE3BA1892F30A007CBC7F /* RBConwayGameRunner.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FEE3B91892F30A007CBC7F /* RBConwayGameRunner.m */; };
 		60FEE3C01892FF80007CBC7F /* RBChangingColorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FEE3BF1892FF80007CBC7F /* RBChangingColorView.m */; };
-		60FEE3C818931CDF007CBC7F /* GameOfLife2.png in Resources */ = {isa = PBXBuildFile; fileRef = 60FEE3C718931CDF007CBC7F /* GameOfLife2.png */; };
 		60FEE3CB18931FB8007CBC7F /* optionsExpand.png in Resources */ = {isa = PBXBuildFile; fileRef = 60FEE3C918931FB8007CBC7F /* optionsExpand.png */; };
 		60FEE3CC18931FB8007CBC7F /* optionsShrink.png in Resources */ = {isa = PBXBuildFile; fileRef = 60FEE3CA18931FB8007CBC7F /* optionsShrink.png */; };
 		60FEE3CF18931FDE007CBC7F /* RBOptionsExpanderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 60FEE3CE18931FDE007CBC7F /* RBOptionsExpanderView.m */; };
@@ -63,11 +63,11 @@
 		6061CF6F189243D1009C16E6 /* RBConwayGameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RBConwayGameViewController.m; path = Controller/RBConwayGameViewController.m; sourceTree = "<group>"; };
 		6061CF711892447F009C16E6 /* RBConwayNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBConwayNode.h; path = Model/RBConwayNode.h; sourceTree = "<group>"; };
 		6061CF721892447F009C16E6 /* RBConwayNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RBConwayNode.m; path = Model/RBConwayNode.m; sourceTree = "<group>"; };
+		60C90EDB1894452400E04E42 /* GameOfLife2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameOfLife2.png; sourceTree = "<group>"; };
 		60FEE3B81892F30A007CBC7F /* RBConwayGameRunner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBConwayGameRunner.h; path = Model/RBConwayGameRunner.h; sourceTree = "<group>"; };
 		60FEE3B91892F30A007CBC7F /* RBConwayGameRunner.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RBConwayGameRunner.m; path = Model/RBConwayGameRunner.m; sourceTree = "<group>"; };
 		60FEE3BE1892FF80007CBC7F /* RBChangingColorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBChangingColorView.h; path = View/RBChangingColorView.h; sourceTree = "<group>"; };
 		60FEE3BF1892FF80007CBC7F /* RBChangingColorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RBChangingColorView.m; path = View/RBChangingColorView.m; sourceTree = "<group>"; };
-		60FEE3C718931CDF007CBC7F /* GameOfLife2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GameOfLife2.png; sourceTree = "<group>"; };
 		60FEE3C918931FB8007CBC7F /* optionsExpand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = optionsExpand.png; sourceTree = "<group>"; };
 		60FEE3CA18931FB8007CBC7F /* optionsShrink.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = optionsShrink.png; sourceTree = "<group>"; };
 		60FEE3CD18931FDE007CBC7F /* RBOptionsExpanderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RBOptionsExpanderView.h; path = View/RBOptionsExpanderView.h; sourceTree = "<group>"; };
@@ -148,7 +148,7 @@
 		6061CF46189242FA009C16E6 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				60FEE3C718931CDF007CBC7F /* GameOfLife2.png */,
+				60C90EDB1894452400E04E42 /* GameOfLife2.png */,
 				60FEE3C918931FB8007CBC7F /* optionsExpand.png */,
 				60FEE3CA18931FB8007CBC7F /* optionsShrink.png */,
 				6061CF4E189242FA009C16E6 /* Brooks2AppDelegate.h */,
@@ -293,9 +293,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60C90EDC1894452400E04E42 /* GameOfLife2.png in Resources */,
 				60FEE3CC18931FB8007CBC7F /* optionsShrink.png in Resources */,
 				60FEE3CB18931FB8007CBC7F /* optionsExpand.png in Resources */,
-				60FEE3C818931CDF007CBC7F /* GameOfLife2.png in Resources */,
 				6061CF4A189242FA009C16E6 /* InfoPlist.strings in Resources */,
 				6061CF52189242FA009C16E6 /* Images.xcassets in Resources */,
 			);
