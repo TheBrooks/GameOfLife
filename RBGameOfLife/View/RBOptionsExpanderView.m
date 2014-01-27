@@ -71,10 +71,10 @@
         _rightOptionViewButtonArea = [UIView new];
         _rightOptionViewButtonArea.tag = OptionExpanderViewRight;
         
-        [_exposedViewButtonArea setFrame:CGRectMake(10, 10, 43, 43)];
-        [_leftOptionViewButtonArea setFrame:CGRectMake(73, 10, 72, 43)];
-        [_centerOptionViewButtonArea setFrame:CGRectMake(155, 10, 72, 43)];
-        [_rightOptionViewButtonArea setFrame:CGRectMake(237, 10, 72, 43)];
+        [_exposedViewButtonArea setFrame:CGRectMake(5, 5, _overHang - 10, self.frame.size.height-10)];
+        [_leftOptionViewButtonArea setFrame:CGRectMake(73, 5, 72, self.frame.size.height-10)];
+        [_centerOptionViewButtonArea setFrame:CGRectMake(155, 5, 72, self.frame.size.height-10)];
+        [_rightOptionViewButtonArea setFrame:CGRectMake(237, 5, 72, self.frame.size.height-10)];
         
         [self addSubview:_exposedViewButtonArea];
         [self addSubview:_leftOptionViewButtonArea];
@@ -201,8 +201,9 @@
         
         [UIView animateWithDuration:.5 animations:^{
             [self setFrame:CGRectMake(0, self.frame.origin.y, self.frame.size.width, self.frame.size.height)];
-            [_expandViewIcon removeFromSuperview];
             [_exposedViewButtonArea addSubview:_retractViewIcon];
+            [_expandViewIcon removeFromSuperview];
+           
         } completion:^(BOOL finished) {
             _expanded = YES;
         }];

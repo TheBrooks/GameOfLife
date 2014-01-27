@@ -11,9 +11,9 @@
 #import "RBConwayGameRunner.h"
 #import "RBChangingColorView.h"
 
-#define NODE_WIDTH 32
-#define NODE_HEIGHT 33
-#define NODES_PER_ROW 10
+#define NODE_WIDTH 32.0
+#define NODE_HEIGHT 33.0
+#define NODES_PER_ROW 11
 #define NODES_PER_COLUMN 18
 #define WHITESPACE 0
 
@@ -37,6 +37,7 @@
     UIView *_stepButton;
     UIView *_runButton;
     UIView *_stopButton;
+    UIView *_scatterButton;
     UIView *_restartButton;
     
     /* Main Content area for the view controller */
@@ -45,6 +46,7 @@
     BOOL _running;
     BOOL _displayed;
     NSTimer *_runTimer;
+    NSTimer *_slowDurationTimer;
     
 }
 
@@ -68,7 +70,7 @@
     [view addSubview:_contentView];
     
     /* Header area of the view Controller */
-    _optionsExtender = [[RBOptionsExpanderView alloc]initWithFrame: CGRectMake(320  - (NODE_WIDTH + WHITESPACE)*2, 0, 320, 2*NODE_HEIGHT)];
+    _optionsExtender = [[RBOptionsExpanderView alloc]initWithFrame: CGRectMake(320  - (NODE_WIDTH + WHITESPACE)*2 + .5 * NODE_WIDTH, 0, 320, 2*NODE_HEIGHT- .3 * NODE_HEIGHT)];
     [view addSubview:_optionsExtender];
     _optionsExtender.delegate = self;
     
@@ -90,9 +92,11 @@
     
     _expandView = [[UIImageView alloc] initWithImage:[[UIImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/optionsExpand.png",[[NSBundle mainBundle] bundlePath] ]]];
     [_expandView setBackgroundColor:[UIColor whiteColor]];
+    [_expandView setContentMode:UIViewContentModeScaleAspectFit ];
     [_expandView setFrame:CGRectMake(0, 0, 44, 44)];
     
     _shrinkView = [[UIImageView alloc] initWithImage:[[UIImage alloc] initWithContentsOfFile:[NSString stringWithFormat:@"%@/optionsShrink.png",[[NSBundle mainBundle] bundlePath] ]]];
+    [_shrinkView setContentMode:UIViewContentModeScaleAspectFit];
     [_shrinkView setBackgroundColor:[UIColor whiteColor]];
     [_shrinkView setFrame:CGRectMake(0, 0, 44, 44)];
 
@@ -123,6 +127,14 @@
     [_stopButton addSubview:stopButtonLabel];
     [_stopButton setFrame:CGRectMake(0, 0, 72, 44)];
     [stopButtonLabel setFrame:[_stopButton bounds]];
+    
+    _scatterButton = [[UIView alloc] init];
+    UILabel *scatterButtonLabel = [UILabel new];
+    [scatterButtonLabel setText:@"scatter"];
+    [_scatterButton addSubview:scatterButtonLabel];
+    [_scatterButton setFrame:CGRectMake(0, 0, 72, 44)];
+    [scatterButtonLabel setFrame:[_scatterButton bounds]];
+
 
     [_optionsExtender setExpandViewIcon: _expandView];
     [_optionsExtender setRetractViewIcon: _shrinkView];
@@ -136,8 +148,8 @@
     
     
     /* content area set up */
-    _contentView.frame = CGRectMake(0,
-                                    0,
+    _contentView.frame = CGRectMake(-0.5 * NODE_WIDTH,
+                                    -0.3 * NODE_HEIGHT,
                                     NODE_WIDTH * NODES_PER_ROW + WHITESPACE * NODES_PER_ROW,
                                     NODE_HEIGHT * NODES_PER_COLUMN + WHITESPACE * NODES_PER_COLUMN);
     
@@ -155,6 +167,7 @@
                                                 row * (NODE_HEIGHT + WHITESPACE),
                                                 NODE_WIDTH,
                                                 NODE_HEIGHT)];
+
             positionView.tag = row;
             
             
@@ -185,26 +198,26 @@
     [super viewWillDisappear:animated];
     [self stopLife];
     
-    NSLog(@"live: %lu", (unsigned long)_nodeData.liveNodes );
     if(!_nodeData.liveNodes)
     {
-        NSLog(@"wawawawa");
         [self randomizeBoard];
     }
-    NSLog(@"leaving");
 }
 - (void) nodePushed:(UIGestureRecognizer*)gestureRecognizer
 {
     //set timer to slow down.  after a certain duration of slowing down speed up timer
-    
+    if(_runTimer)
+        [self slowLifeTimerSpeed];
     
     if(gestureRecognizer.state == UIGestureRecognizerStateEnded)
         [self toggleNode:(RBChangingColorView *)gestureRecognizer.view];
 }
 - (void) nodeLongPushed:(UIGestureRecognizer *) recognizer
 {
-    if(recognizer.state == UIGestureRecognizerStateBegan)
+    if(recognizer.state == UIGestureRecognizerStateEnded)
     {
+        if(_runTimer)
+            [self slowLifeTimerSpeed];
         RBChangingColorView *tappedView = (RBChangingColorView *)recognizer.view;
         NSUInteger row = tappedView.tag;
         NSUInteger column = [_conwayNodeViews[row] indexOfObject:tappedView];
@@ -212,6 +225,7 @@
         
         [_nodeData toggleNodeAlwaysOnAtRow:row Column:column];
         [(RBChangingColorView *)_conwayNodeViews[row][column] setActive:((RBConwayNode *)_nodeData.conwayNodes[row][column]).isAlive];
+        
     }
 }
 - (void) toggleNode:(RBChangingColorView *)tappedView
@@ -236,8 +250,45 @@
 
 - (void) runLife
 {
-    _runTimer = [NSTimer scheduledTimerWithTimeInterval: .2 target:self selector:@selector(stepLife) userInfo:nil repeats:YES];
+    [self normalLifeTimerSpeed];
     [_optionsExtender setCenterOptionViewButton:_stopButton];
+}
+
+- (void) slowLifeTimerSpeed
+{
+    if(_runTimer.timeInterval != .5 )
+    {
+        [_runTimer invalidate];
+        _runTimer = nil;
+        
+        _runTimer = [NSTimer scheduledTimerWithTimeInterval:.5 target:self selector:@selector(stepLife) userInfo:nil repeats:YES];
+        
+    }
+    
+    if(_slowDurationTimer)
+    {
+        [_slowDurationTimer invalidate];
+        _slowDurationTimer = nil;
+    }
+    
+    _slowDurationTimer = [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(normalLifeTimerSpeed) userInfo:nil repeats:NO];
+}
+
+- (void) normalLifeTimerSpeed
+{
+    if(_slowDurationTimer)
+    {
+        [_slowDurationTimer invalidate];
+        _slowDurationTimer = nil;
+    }
+    
+    if(_runTimer)
+    {
+        [_runTimer invalidate];
+        _runTimer = nil;
+    }
+    
+    _runTimer = [NSTimer scheduledTimerWithTimeInterval:.2 target:self selector:@selector(stepLife) userInfo:nil repeats:YES];
 }
 
 - (void) stepLife
@@ -253,6 +304,18 @@
         [_runTimer invalidate];
         _runTimer = nil;
     }
+    if(_slowDurationTimer)
+    {
+        [_slowDurationTimer invalidate];
+        _slowDurationTimer = nil;
+    }
+    
+    if(!_nodeData.liveNodes)
+    {
+        [_optionsExtender setRightOptionViewButton:_scatterButton];
+        [_optionsExtender setExpanded:YES];
+    }
+    
     [_optionsExtender setCenterOptionViewButton:_runButton];
     
 }
@@ -276,10 +339,21 @@
    }
    else if(touchPosition == OptionExpanderViewRight)
    {
-       [self stopLife];
-       [_nodeData restartGame];
-       [self updateNodeViews];
-   }
+       if(!_nodeData.liveNodes)
+       {
+           [self randomizeBoard];
+           [_optionsExtender setRightOptionViewButton:_restartButton];
+       }
+       else
+       {
+           [self stopLife];
+           [_nodeData restartGame];
+           [self updateNodeViews];
+           
+           if(!_nodeData.liveNodes)
+               [_optionsExtender setRightOptionViewButton:_scatterButton];
+       }
+    }
 }
 
 - (void) optionExpanderViewDidRecieveExpanderTouch:(RBOptionsExpanderView *)expanderView
@@ -292,6 +366,7 @@
         [expanderView setExpanded:YES];
     }
 }
+
 
 
 - (BOOL) prefersStatusBarHidden{return YES;}
