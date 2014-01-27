@@ -103,6 +103,7 @@
     _stepButton = [[UIView alloc] init];
     UILabel *leftButtonLabel = [UILabel new];
     [leftButtonLabel setText:@"step"];
+    [leftButtonLabel setTextAlignment:NSTextAlignmentCenter];
     [_stepButton addSubview:leftButtonLabel];
     [_stepButton setFrame:CGRectMake(0, 0, 72, 44)];
     [leftButtonLabel setFrame:[_stepButton bounds]];
@@ -110,6 +111,7 @@
     _runButton = [[UIView alloc] init];
     UILabel *centerButtonLabel = [UILabel new];
     [centerButtonLabel setText:@"run"];
+    [centerButtonLabel setTextAlignment:NSTextAlignmentCenter];
     [_runButton addSubview:centerButtonLabel];
     [_runButton setFrame:CGRectMake(0, 0, 72, 44)];
     [centerButtonLabel setFrame:[_runButton bounds]];
@@ -117,6 +119,7 @@
     _restartButton = [[UIView alloc] init];
     UILabel *rightButtonLabel = [UILabel new];
     [rightButtonLabel setText:@"restart"];
+    [rightButtonLabel setTextAlignment:NSTextAlignmentCenter];
     [_restartButton addSubview:rightButtonLabel];
     [_restartButton setFrame:CGRectMake(0, 0, 72, 44)];
     [rightButtonLabel setFrame:[_restartButton bounds]];
@@ -124,6 +127,7 @@
     _stopButton = [[UIView alloc] init];
     UILabel *stopButtonLabel = [UILabel new];
     [stopButtonLabel setText:@"stop"];
+    [stopButtonLabel setTextAlignment:NSTextAlignmentCenter];
     [_stopButton addSubview:stopButtonLabel];
     [_stopButton setFrame:CGRectMake(0, 0, 72, 44)];
     [stopButtonLabel setFrame:[_stopButton bounds]];
@@ -131,6 +135,7 @@
     _scatterButton = [[UIView alloc] init];
     UILabel *scatterButtonLabel = [UILabel new];
     [scatterButtonLabel setText:@"scatter"];
+    [scatterButtonLabel setTextAlignment:NSTextAlignmentCenter];
     [_scatterButton addSubview:scatterButtonLabel];
     [_scatterButton setFrame:CGRectMake(0, 0, 72, 44)];
     [scatterButtonLabel setFrame:[_scatterButton bounds]];
@@ -208,6 +213,11 @@
     //set timer to slow down.  after a certain duration of slowing down speed up timer
     if(_runTimer)
         [self slowLifeTimerSpeed];
+    
+    if(!_nodeData.liveNodes && _optionsExtender.leftOptionViewButton != _restartButton)
+    {
+        [_optionsExtender setRightOptionViewButton:_restartButton];
+    }
     
     if(gestureRecognizer.state == UIGestureRecognizerStateEnded)
         [self toggleNode:(RBChangingColorView *)gestureRecognizer.view];
@@ -313,9 +323,9 @@
     if(!_nodeData.liveNodes)
     {
         [_optionsExtender setRightOptionViewButton:_scatterButton];
-        [_optionsExtender setExpanded:YES];
     }
     
+    [_optionsExtender setExpanded:YES];
     [_optionsExtender setCenterOptionViewButton:_runButton];
     
 }
