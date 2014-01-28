@@ -148,7 +148,7 @@
     [_optionsExtender setRightOptionViewButton:_restartButton];
     
     
-    [_contentView setBackgroundColor:[UIColor lightGrayColor]];
+    
     
     
     

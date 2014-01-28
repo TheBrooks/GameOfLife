@@ -40,8 +40,12 @@
         _greenBaseFactor = 1;
         _blueBaseFactor = 1;
         
-        [self recalculateDisplayAgeColor];
-        
+        _color = [UIColor colorWithRed:(255/255.0)
+                                 green:(250/255.0)
+                                  blue:(250/255.0)
+                                 alpha:1];
+        [self setBackgroundColor:_color];
+
     }
     return self;
 }
@@ -52,15 +56,20 @@
     {
         _age = 0;
         
-        _red = 255;
+        _red = 25;
         _green = 255;
         _blue = 255;
         
         _redBaseFactor = 1;
         _greenBaseFactor = 1;
         _blueBaseFactor = 1;
-        [self recalculateDisplayAgeColor];
-        
+
+        _color = [UIColor colorWithRed:(255/255.0)
+                                 green:(250/255.0)
+                                  blue:(250/255.0)
+                                 alpha:1];
+        [self setBackgroundColor:_color];
+
         _isActive = NO;
     }
     if(updateActive) // if staying on
